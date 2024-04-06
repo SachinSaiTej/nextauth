@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
         console.log(reqBody);
-        const { userName, email, password } = reqBody;
+        const { username, email, password } = reqBody;
         // Validation
 
         const user = await User.findOne({ email });
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
         const hashedPassword = await bcryptjs.hash(password, salt);
 
 
-        const newUser = new User({ userName, email, password: hashedPassword });
+        const newUser = new User({ username, email, password: hashedPassword });
         const savedUser = await newUser.save();
         console.log(savedUser);
 
